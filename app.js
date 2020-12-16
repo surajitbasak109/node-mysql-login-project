@@ -15,7 +15,11 @@ const db = mysql.createConnection({
 })
 
 const publicDirectory = path.join(__dirname, './public')
+
 app.use(express.static(publicDirectory))
+
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended: false }))
 
 app.set('view engine', 'hbs')
 
@@ -27,9 +31,9 @@ db.connect((err) => {
   }
 })
 
-app.get('/', (req, res) => {
-  res.render('index')
-})
+// define routes
+app.use('/', require('./routes/pages'))
+app.use('/auth', require('./routes/auth'))
 
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`)
