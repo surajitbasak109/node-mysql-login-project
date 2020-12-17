@@ -1,18 +1,9 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 const path = require('path')
 const port = process.env.port || 5000
-const mysql = require('mysql')
-const dotenv = require('dotenv')
-
-dotenv.config({ path: './.env' })
-
-const db = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
-})
+const db = require('./database')
 
 const publicDirectory = path.join(__dirname, './public')
 
@@ -20,8 +11,14 @@ app.use(express.static(publicDirectory))
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: false }))
+
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json())
+
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  extname: 'hbs'
+}))
 
 app.set('view engine', 'hbs')
 
