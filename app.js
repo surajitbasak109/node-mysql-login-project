@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const port = process.env.port || 5000
 const db = require('./database')
+const cookieParser = require('cookie-parser')
 
 const publicDirectory = path.join(__dirname, './public')
 
@@ -15,14 +16,19 @@ app.use(express.urlencoded({ extended: false }))
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json())
 
-app.engine('hbs', exphbs({
-  defaultLayout: 'main',
-  extname: 'hbs'
-}))
+app.use(cookieParser())
+
+app.engine(
+  'hbs',
+  exphbs({
+    defaultLayout: 'main',
+    extname: 'hbs',
+  })
+)
 
 app.set('view engine', 'hbs')
 
-db.connect((err) => {
+db.connect(err => {
   if (err) {
     console.log(err)
   } else {
