@@ -49,7 +49,6 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `remember_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_login` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -74,7 +73,6 @@ VALUES
     'Test User',
     'test@email.com',
     '$2a$08$bUufMAtNI9f3mGp8a7PhmerSDNMvOBx27TXArNy0XFMTKCDFdYk6W',
-    NULL,
     '2020-12-16 19:22:03',
     NULL
   ),
@@ -83,7 +81,6 @@ VALUES
     'Admin',
     'admin@email.com',
     '$2a$08$XUzNDo.Fqssg9AgNMeXO4O9ruzN6oXK6Idi3TiUnbUELNEb8kvkaS',
-    NULL,
     '2020-12-16 19:24:20',
     NULL
   );
