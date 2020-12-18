@@ -1,5 +1,11 @@
+const { getUser } = require('../helper/user_helper')
+
 exports.home = (req, res) => {
-  res.render('home', {
-    authorized: true,
+  const token = req.cookies.jwt
+  getUser(token, result => {
+    res.render('home', {
+      authorized: true,
+      user: result
+    })
   })
 }
