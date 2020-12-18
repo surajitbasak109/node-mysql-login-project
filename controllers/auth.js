@@ -2,6 +2,7 @@ const db = require('../database')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
+// Register
 exports.register = (req, res) => {
   console.log(req.body)
 
@@ -31,7 +32,7 @@ exports.register = (req, res) => {
         if (error) {
           console.log(error)
         } else {
-          console.log(results)
+          // console.log(results)
           return res.render('register', {
             message: { type: 'success', text: 'User registered' },
           })
@@ -41,6 +42,7 @@ exports.register = (req, res) => {
   })
 }
 
+// Login
 exports.login = (req, res) => {
   try {
     const { email, password } = req.body
@@ -63,7 +65,7 @@ exports.login = (req, res) => {
           expiresIn: process.env.JWT_EXPIRES_IN,
         })
 
-        console.log('The token is', token)
+        // console.log('The token is', token)
 
         const cookieOptions = {
           expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
@@ -71,7 +73,7 @@ exports.login = (req, res) => {
         }
 
         res.cookie('jwt', token, cookieOptions)
-        res.status(200).redirect('/')
+        res.status(200).redirect('/home')
       }
     })
   } catch (error) {
