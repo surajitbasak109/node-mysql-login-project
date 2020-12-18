@@ -1,17 +1,27 @@
 const express = require('express')
+const { getUser } = require('../helper/user_helper')
 const admin = require('../controllers/admin')
-const { authorized } = require('../middlewares/auth')
+const { authorized, isPublic } = require('../middlewares/auth')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('index')
+  if (req.cookies.jwt) {
+    getUser(req.cookies.jwt, result => {
+      res.render('index', {
+        authorized: true,
+        user: result
+      })
+    })
+  } else {
+    res.render('index')
+  }
 })
 
-router.get('/register', (req, res) => {
+router.get('/register', isPublic, (req, res) => {
   res.render('register')
 })
 
-router.get('/login', (req, res) => {
+router.get('/login', isPublic, (req, res) => {
   res.render('login')
 })
 

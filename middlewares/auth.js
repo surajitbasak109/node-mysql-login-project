@@ -1,16 +1,27 @@
 const jwt = require('jsonwebtoken')
 
 module.exports.authorized = (req, res, next) => {
-  let token = req.cookies.jwt
+  const token = req.cookies.jwt
   try {
-    let decoded = jwt.verify(token, process.env.JWT_SECRET)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     return next()
   } catch (error) {
-    let err = {
+    console.log(error)
+    const err = {
       error: 'Not authorized! Go back!',
-      status: 401,
+      status: 401
     }
-    res.setHeader('Content-Type', 'application/json')
     return res.redirect('/login')
+  }
+}
+
+module.exports.isPublic = (req, res, next) => {
+  const token = req.cookies.jwt
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    res.redirect('/home')
+  } catch (error) {
+    console.log(error)
+    return res.next()
   }
 }
