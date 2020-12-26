@@ -4,10 +4,10 @@ module.exports = {
     commonjs: true,
     es2021: true,
   },
-  extends: ['standard'],
+  extends: ["standard"],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {},
-  'comma-dangle': ['error', 'never'],
-}
+  //'comma-dangle': ['error', 'never'],
+};
