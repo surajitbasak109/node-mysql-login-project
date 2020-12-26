@@ -57,6 +57,8 @@ router.get('/home', authorized, admin.home);
 
 // profile
 router.get('/profile', authorized, profile.index);
+router.get('/profile/edit', authorized, profile.edit);
+router.post('/profile/update', authorized, profile.update);
 
 // Tasks
 router.get('/tasks', authorized, task.index);

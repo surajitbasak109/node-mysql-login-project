@@ -1,0 +1,153 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      {{#if successMsg}}
+      <div class="alert alert-success">
+        {{ successMsg }}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  <form action="/profile/update" method="POST" enctype="multipart/form-data">
+    <div class="row gutters-sm">
+      <div class="col-md-7">
+        <div class="card mb-3">
+          <div class="card-header">
+            Personal Details
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <input class="form-control form-control-sm {{#if errors.image}} is-invalid {{/if}}" name="image"
+                type="file" id="image" accept="image/*">
+              {{#if errors.image}}
+              <div class="invalid-feedback">
+                {{errors.image}}
+              </div>
+              {{/if}}
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="name" class="text-secondary col-md-2">Fullname</label>
+                <div class="col-md-10">
+                  <input type="text" name="name" id="name"
+                    class="form-control form-control-sm {{#if errors.name}} is-invalid {{/if}}" value="{{ user.name }}"
+                    required>
+                  {{#if errors.name}}
+                  <div class="invalid-feedback">
+                    {{errors.name}}
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="email" class="text-secondary col-md-2">Email</label>
+                <div class="col-md-10">
+                  <input type="email" id="email" class="form-control form-control-sm" value="{{ user.email }}" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="role" class="text-secondary col-md-2">Role</label>
+                <div class="col-md-10">
+                  <input type="text" name="role" id="role" class="form-control form-control-sm"
+                    value="{{ profile.role }}" required>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="phone" class="text-secondary col-md-2">Phone</label>
+                <div class="col-md-10">
+                  <input type="text" name="phone" id="phone" class="form-control form-control-sm"
+                    value="{{ profile.phone }}">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="mobile" class="text-secondary col-md-2">Mobile</label>
+                <div class="col-md-10">
+                  <input type="text" name="mobile" id="mobile" class="form-control form-control-sm"
+                    value="{{ profile.mobile }}">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="address" class="text-secondary col-md-2">Address</label>
+                <div class="col-md-10">
+                  <textarea name="address" id="address"
+                    class="form-control form-control-sm no-resize">{{ profile.address }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <label for="bio" class="text-secondary col-md-2">Bio</label>
+                <div class="col-md-10">
+                  <textarea name="bio" id="bio"
+                    class="form-control form-control-sm no-resize">{{ profile.bio }}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="submit" class="btn btn-success btn-sm">Save</button>
+              <a href="/profile" class="btn btn-danger btn-sm">Back</a>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header">Social Accounts</div>
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="row">
+                <label for="website" class="col-md-3 text-secondary">Website</label>
+                <div class="col-md-9">
+                  <input type="text" name="website" id="website" class="form-control form-control-sm"
+                    value="{{profile.website}}">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <label for="github" class="text-secondary me-2">https://www.github.com/</label>
+                <input type="text" name="github" id="github" class="form-control form-control-sm"
+                  value="{{profile.github}}">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <label for="twitter" class="text-secondary me-2">https://www.twitter.com/</label>
+                <input type="text" name="twitter" id="twitter" class="form-control form-control-sm"
+                  value="{{profile.twitter}}">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <label for="instagram" class="text-secondary me-2">https://www.instagram.com/</label>
+                <input type="text" name="instagram" id="instagram" class="form-control form-control-sm"
+                  value="{{profile.instagram}}">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <label for="facebook" class="text-secondary me-2">https://www.facebook.com/</label>
+                <input type="text" name="facebook" id="facebook" class="form-control form-control-sm"
+                  value="{{profile.facebook}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
