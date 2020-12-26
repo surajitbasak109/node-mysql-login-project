@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form action="/tasks/update/{{task.id}}" method="POST">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-8">
+                <h3 class="card-title">{{ title }}</h3>
+              </div>
+              <div class="col-lg-4 text-end">
+                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                <a class="btn btn-danger btn-sm" href="/tasks">Back</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="name" class="col-form-label">Task name</label>
+              <input id="name" class="form-control form-control-sm {{#if error.name}} is-invalid {{/if}}" type="text" name="name" value="{{task.name}}">
+              {{#if error.name}}
+                <div class="invalid-feedback">
+                  {{ error.name }}
+                </div>
+              {{/if}}
+            </div>
+            <div class="mb-3">
+              <label for="description" class="col-form-label">Description</label>
+              <textarea id="description" class="form-control form-control-sm no-resize" name="description">{{task.description}}</textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

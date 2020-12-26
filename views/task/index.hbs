@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card-title">{{ title }}</div>
+            </div>
+            <div class="col-lg-4 text-end">
+              <a class="btn btn-primary btn-sm" href="/tasks/create">Add New</a>
+              <a class="btn btn-danger btn-sm" href="/home">Back</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          {{#if successMsg}}
+            <div class="alert alert-success">
+              {{ successMsg }}
+            </div>
+          {{/if}}
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Task Name</th>
+                  <th>Description</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each tasks}}
+                <tr>
+                  <td>{{ this.name }}</td>
+                  <td>{{ this.description }}</td>
+                  <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <a href="/tasks/edit/{{this.id}}" class="btn btn-success btn-sm me-1">Edit</a>
+                      <form method="POST" action="/tasks/delete/{{this.id}}">
+                      <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
