@@ -1,5 +1,7 @@
 # Node MySQL Login Project
 
+To build login system with Node we need following dependencies:
+
 ## Dependencies used
 1. **bcryptjs**: To encrypt password
 1. cookie-parser

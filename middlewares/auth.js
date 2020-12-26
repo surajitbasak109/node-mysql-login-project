@@ -21,7 +21,7 @@ module.exports.isPublic = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     res.redirect('/home')
   } catch (error) {
-    console.log(error)
-    return res.next()
+    // console.log(error);
+    return next()
   }
 }
